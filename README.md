@@ -1,6 +1,6 @@
 Server header retriever
 =====
-This script is designed to retrieve the server header with a version number of websites stored in a text file. The script ignores both SSL errors and "connection refused" errors when retrieving the server header. 
+This script retrieves the HTTP headers for websites listed in a text file. The headers include the Server header and the X-Powered-By header. The script uses the Python http.client and ssl modules to connect to websites over HTTPS.
 
 Requirements:
 ~~~
@@ -10,12 +10,12 @@ ssl module
 ~~~
 
 Usage:
-Create a text file with the websites for which you want to retrieve the server header, each website on a new line.
-Run the script in the terminal and pass the text file as an argument:
+1. Create a text file with the websites for which you want to retrieve the server and x-powered-by header, each website on a new line.
+2. Run the script, execute the following command in a terminal:
 ~~~
-python3 server-header-retriever.py <filename>.txt
+python script.py <filename>.txt [--version-only]
 ~~~
-The script will then retrieve the server header with version number for each website in the text file and print it to the terminal. If it is not possible to connect to a website or the header does not contain a version number, the header will not be printed.
+Where <filename>.txt is the name of the text file containing a list of websites, and --version-only is an optional argument that determines whether only the version of the server software should be displayed in the output.
 
 Note:
 The script removes "http://" or "https://" from the URL before connecting to the server.
