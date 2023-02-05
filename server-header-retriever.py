@@ -1,23 +1,27 @@
 import http.client
 import ssl
-import sys
 
-def get_server_header(file):
-    with open(file) as f:
+def retrieve_server_header(filename):
+    with open(filename) as f:
         websites = [line.strip() for line in f.readlines()]
 
     for website in websites:
-        website = website.replace("http://", "").replace("https://", "")
-        context = ssl.create_default_context()
-        context.check_hostname = False
-        context.verify_mode = ssl.CERT_NONE
+        url = website.replace("https://", "").replace("http://", "")
         try:
-            conn = http.client.HTTPSConnection(website, context=context)
+            conn = http.client.HTTPSConnection(url, context=ssl._create_unverified_context())
             conn.request("GET", "/")
             res = conn.getresponse()
-            print(f"Server header from {website}: {res.getheader('Server')}")
-        except:
-            print(f"Cannot connect to {website}")
+            server = res.getheader('Server')
+            if server and any(char.isdigit() for char in server):
+                print(f"Server header of {website}: {server}")
+        except Exception as e:
+            pass
 
-file = sys.argv[1]
-get_server_header(file)
+if __name__ == "__main__":
+    import sys
+    if len(sys.argv) != 2:
+        print("Usage: python script.py <filename>.txt")
+        sys.exit()
+
+    filename = sys.argv[1]
+    retrieve_server_header(filename)
