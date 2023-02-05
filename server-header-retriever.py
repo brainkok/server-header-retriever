@@ -15,9 +15,9 @@ def get_server_header(file):
             conn = http.client.HTTPSConnection(website, context=context)
             conn.request("GET", "/")
             res = conn.getresponse()
-            print(f"Server header van {website}: {res.getheader('Server')}")
+            print(f"Server header from {website}: {res.getheader('Server')}")
         except:
-            print(f"Kan geen verbinding maken met {website}")
+            print(f"Cannot connect to {website}")
 
 file = sys.argv[1]
 get_server_header(file)
