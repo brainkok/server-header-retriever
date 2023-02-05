@@ -13,7 +13,7 @@ Usage:
 1. Create a text file with the websites for which you want to retrieve the server and x-powered-by header, each website on a new line.
 2. Run the script, execute the following command in a terminal:
 ~~~
-python script.py <filename>.txt [--version-only]
+python server-header-retriever.py <filename>.txt [--version-only]
 ~~~
 Where <filename>.txt is the name of the text file containing a list of websites, and --version-only is an optional argument that determines whether only the version of the server software should be displayed in the output.
 
