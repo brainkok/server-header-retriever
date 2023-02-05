@@ -24,7 +24,7 @@ def retrieve_headers(filename, show_version_only=True):
 if __name__ == "__main__":
     import sys
     if len(sys.argv) not in (2, 3):
-        print("Usage: python script.py <filename>.txt [--version-only]")
+        print("Usage: python3 server-header-retriever.py <filename>.txt [--version-only]")
         sys.exit()
 
     filename = sys.argv[1]
